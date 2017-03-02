@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net"
 	"os"
@@ -9,6 +8,7 @@ import (
 	"github.com/KerryAlsace/practice-grpc/calculations"
 	pb "github.com/KerryAlsace/practice-grpc/routes"
 
+	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -17,19 +17,19 @@ import (
 type server struct{}
 
 // AddOne implements practice_app.Server and adds 1 to the requested integer
-func (s *server) AddOne(ctx context.Context, in *pb.NumberRequest) (*pb.NumberReply, error) {
+func (s *server) AddOne(ctx context.Context, in *pb.NumberRequest) (*pb.NumberResponse, error) {
 	calculations.AddOne(&in.Number)
-	return &pb.NumberResponse{Message: in.Number}, nil
+	return &pb.NumberResponse{Number: in.Number}, nil
 }
 
 // Square implements practice_app.Server and squares the requested integer
-func (s *server) Square(ctx context.Context, in *pb.NumberRequest) (*pb.NumberReply, error) {
+func (s *server) Square(ctx context.Context, in *pb.NumberRequest) (*pb.NumberResponse, error) {
 	calculations.Square(&in.Number)
-	return &pb.NumberResponse{Message: in.Number}, nil
+	return &pb.NumberResponse{Number: in.Number}, nil
 }
 
 func main() {
-	lis, err := net.Listen("tcp", os.Getenv(PORT))
+	lis, err := net.Listen("tcp", os.Getenv("PORT"))
 
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
