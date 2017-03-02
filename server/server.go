@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net"
-	"os"
 
 	"github.com/KerryAlsace/practice-grpc/calculations"
 	pb "github.com/KerryAlsace/practice-grpc/routes"
@@ -11,6 +10,10 @@ import (
 	context "golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+)
+
+const (
+	port = ":50051"
 )
 
 // server is used to implement practice_app.Server
@@ -29,7 +32,7 @@ func (s *server) Square(ctx context.Context, in *pb.NumberRequest) (*pb.NumberRe
 }
 
 func main() {
-	lis, err := net.Listen("tcp", os.Getenv("PORT"))
+	lis, err := net.Listen("tcp", port)
 
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)

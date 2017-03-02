@@ -11,11 +11,14 @@ import (
 	"google.golang.org/grpc"
 )
 
-const defaultNum = int32(2)
+const (
+	defaultNum = int32(2)
+	address    = "localhost:50051"
+)
 
 func main() {
 	// Set up connection to the server
-	conn, err := grpc.Dial(os.Getenv("ADDRESS"), grpc.WithInsecure())
+	conn, err := grpc.Dial(address, grpc.WithInsecure())
 
 	if err != nil {
 		log.Fatalf("Did not connect: %v", err)
