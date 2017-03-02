@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 
+	pb "github.com/KerryAlsace/practice-grpc/routes"
+
 	"google.golang.org/grpc"
 )
 

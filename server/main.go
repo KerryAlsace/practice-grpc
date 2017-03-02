@@ -6,6 +6,9 @@ import (
 	"net"
 	"os"
 
+	"github.com/KerryAlsace/practice-grpc/calculations"
+	pb "github.com/KerryAlsace/practice-grpc/routes"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
