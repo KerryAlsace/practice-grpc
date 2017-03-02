@@ -8,5 +8,5 @@ func AddOne(n *int32) {
 
 // Square takes and integer and squares it
 func Square(n *int32) {
-	*n = *n * n
+	*n = *n * *n
 }
